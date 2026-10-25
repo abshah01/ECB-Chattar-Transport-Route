@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "config": {
+      ".read": true,
+      ".write": "auth != null && root.child('roles').child(auth.uid).val() === 'admin'"
+    },
+    "live": {
+      ".read": true,
+      ".write": "auth != null && (root.child('roles').child(auth.uid).val() === 'admin' || root.child('roles').child(auth.uid).val() === 'captain')"
+    },
+    "roles": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    }
+  }
+}
